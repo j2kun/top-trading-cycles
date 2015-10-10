@@ -49,10 +49,10 @@ def topTradingCycles(agents, houses, agentPreferences, initialOwnership):
 
    # maps agent to an index of the list agentPreferences[agent]
    currentPreferenceIndex = dict((a,0) for a in agents)
-   preferedHouse = lambda a: agentPreferences[a][currentPreferenceIndex[a]]
+   preferredHouse = lambda a: agentPreferences[a][currentPreferenceIndex[a]]
 
    for a in agents:
-      G.addEdge(a, preferedHouse(a))
+      G.addEdge(a, preferredHouse(a))
    for h in houses:
       G.addEdge(h, initialOwnership[h])
 
@@ -71,9 +71,9 @@ def topTradingCycles(agents, houses, agentPreferences, initialOwnership):
 
       for a in agents:
          if a in G.vertices and G[a].outdegree() == 0:
-            while preferedHouse(a) not in G.vertices:
+            while preferredHouse(a) not in G.vertices:
                currentPreferenceIndex[a] += 1
-            G.addEdge(a, preferedHouse(a))
+            G.addEdge(a, preferredHouse(a))
 
    return allocation
 
